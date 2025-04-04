@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  .container-fluid
+    .row
+      - results.forEach(function(bike) { 
+        .col-sm-2
+          .bike-card
+            p Brand: #{bike.brand}
+            p Type: #{bike.type}
+            p Price: $#{bike.price}
+      })
