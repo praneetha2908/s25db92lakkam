@@ -1,13 +1,54 @@
 extends layout
 
 block content
-  h1= title
+  style.
+    .bike-card {
+      background-color: rgb(49, 127, 206);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(43, 16, 173, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .bike-card:hover {
+      transform: scale(1.03);
+    }
+
+    .bike-card h3 {
+      color: #007bff;
+    }
+
+    .btn {
+      margin-right: 5px;
+    }
+
+  h1.text-center.mb-4= title
+  .text-center.mb-3
+    a.btn.btn-success(href="/bicycles/create") Create Bicycles
+
+  - let items = results;
+
+  p.text-muted.text-center Below are some types of Bicycles search results:
+
   .container-fluid
     .row
-      - results.forEach(function(bike) { 
-        .col-sm-2
-          .bike-card
-            p Brand: #{bike.brand}
-            p Type: #{bike.type}
-            p Price: $#{bike.price}
-      })
+      each item in items
+        .col-sm-3.mb-4
+          .bike-card.p-3.border
+            h3= item.bicycles_brand
+            p Type: #{item.type}
+            p Price: #{item.price}$
+            button.btn.btn-primary.ml-1(onclick=`dispatch('/bicycles/update?id=${item._id}')`) Update
+            button.btn.btn-info.ml-1(onclick=`dispatch('/bicycles/detail?id=${item._id}')`) Detail
+            button.btn.btn-warning.ml-1(onclick=`dispatch('/bicycles/delete?id=${item._id}')`) Delete
+
+  .text-center.mt-4
+    a(href="/") Back to Home
+
+  script.
+    function dispatch(path){
+      window.location.href = path;
+    }
+
+
+
+

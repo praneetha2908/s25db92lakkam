@@ -1,0 +1,20 @@
+extends layout
+block content
+  h1= title
+  - let bicyclesid = toShow._id
+  - let brand = toShow.brand
+  - let type = toShow.type
+  - let price = toShow.price
+  div
+    div.row
+      div(class='bicyclesAttr mr-3') Bicycle ID is:
+      div #{bicyclesid}
+    div.row
+      div(class='bicyclesAttr mr-3') Bicycle brand is:
+      div #{brand}
+    div.row
+      div(class='bicyclesAttr mr-3') Bicycle type is:
+      div #{type}
+    div.row
+      div(class='bicyclesAttr mr-3') Bicycle price is:
+      div #{price}
